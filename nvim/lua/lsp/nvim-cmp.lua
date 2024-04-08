@@ -5,8 +5,6 @@ return {
   dependencies = {
     "hrsh7th/cmp-buffer",           -- source for text in buffer
     "hrsh7th/cmp-path",             -- source for file system paths
-    --"hrsh7th/vim-vsnip",
-    --"hrsh7th/vim-vsnip-integ",
     {
       "L3MON4D3/LuaSnip",
       -- follow latest release.
@@ -22,6 +20,10 @@ return {
   config = function()
     local cmp = require("cmp")
 
+    local luasnip = require("luasnip")
+
+    local lspkind = require("lspkind")
+
     -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
     require("luasnip.loaders.from_vscode").lazy_load()
 
@@ -32,8 +34,7 @@ return {
       -- configure how nvim-cmp interacts with snippet engine
       snippet = {
       expand = function(args)
-        --vim.fn["vsnip#anonymous"](args.body)        -- for `vsnip` users
-        require("luasnip").lsp_expand(args.body)  -- for 'luasnip' users
+        luasnip.lsp_expand(args.body)  -- for 'luasnip' users
       end,
     },
     window = {
@@ -48,26 +49,24 @@ return {
       ["<C-Space>"] = cmp.mapping.complete(),     -- show completion suggestions
       ["<C-e>"] = cmp.mapping.abort(),            -- close completion window
       ["<CR>"] = cmp.mapping.confirm({ select = false }),
-      ['<Tab>'] = function(fallback)
-        if vim.fn.pumvisible() == 1 then
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-n>', true, true, true), 'n')
+      ['<Tab>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_next_item()
         elseif luasnip.expand_or_jumpable() then
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes(
-          '<Plug>luasnip-expand-or-jump', true, true, true), '')
+          luasnip.expand_or_jump()
         else
           fallback()
         end
-      end,
-      ['<S-Tab>'] = function(fallback)
-        if vim.fn.pumvisible() == 1 then
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<C-p>', true, true, true), 'n')
+      end, { 'i', 's' }),
+      ['<S-Tab>'] = cmp.mapping(function(fallback)
+        if cmp.visible() then
+          cmp.select_prev_item()
         elseif luasnip.jumpable(-1) then
-          vim.fn.feedkeys(vim.api.nvim_replace_termcodes(
-          '<Plug>luasnip-jump-prev', true, true, true), '')
+          luasnip.jump(-1)
         else
           fallback()
         end
-      end,
+      end, { 'i', 's' }),
     }),
     -- sources for autocompletion
     sources = cmp.config.sources({
@@ -80,7 +79,7 @@ return {
     -- configure lspkind for vs-code like icons
     -- configure lspkind for vs-code like pictograms in completion menu
     formatting = {
-      format = require("lspkind").cmp_format({
+      format = lspkind.cmp_format({
         maxwidth = 40,
         ellipsis_char = "...",
       }),
