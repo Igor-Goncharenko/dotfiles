@@ -22,7 +22,7 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
 
 -- javascript formatting
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
-  pattern = {"*.js", "*.html", "*.css", "*.lua"},
+  pattern = {"*.js", "*.html", "*.css", "*.lua", "*.json"},
   callback = function()
     vim.opt.tabstop = 2
     vim.opt.softtabstop = 2
