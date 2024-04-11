@@ -12,11 +12,17 @@ fi
 mkdir temp
 git clone https://github.com/Igor-Goncharenko/dotfiles temp/
 
+# update tmux config
 if [ -d "~/.config/tmux/" ]; then
     rm -r ~/.config/tmux
 fi
 cp -r temp/.config/tmux ~/.config/
 
+# update nvim config
+if [ -d "~/.config/tmux/" ]; then
+    rm -r ~/.config/tmux
+fi
+cp -r temp/.config/tmux ~/.config/
 
-#sudo rm -r temp/
+sudo rm -r temp/
 
