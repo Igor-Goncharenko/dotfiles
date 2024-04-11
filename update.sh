@@ -17,7 +17,7 @@ case $yn in
     [yY] ) 
         git add .
         read -p "Enter commit name: " commit_name
-        git commit -m commit_name
+        git commit -m "$commit_name"
         git push -u origin main;;
     * ) echo Did not pushed to github;;
 esac
