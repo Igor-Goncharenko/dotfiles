@@ -22,9 +22,14 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir" -- set directory where undo files are stored
 vim.opt.undofile = true         -- save undo history to a file
+vim.opt.fileformats = "unix"
+vim.opt.fileencoding = "utf-8"
 
 -- Other 
 vim.opt.encoding = "utf-8"
 
 vim.opt.termguicolors = true    -- enable true color support
+
+-- Set copy and paste from/to vim, e.g vim --> browser, browser --> vim
+vim.opt.clipboard = "unnamedplus"
 
