@@ -20,6 +20,15 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
   end
 })
 
+-- rust formatting
+vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+  pattern = { "*.rs" },
+  callback = function()
+    vim.opt.textwidth = 100
+    vim.opt.colorcolumn = "100"
+  end
+})
+
 -- javascript formatting
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
   pattern = {"*.js", "*.html", "*.css", "*.lua", "*.json"},

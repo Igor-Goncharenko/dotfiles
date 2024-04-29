@@ -11,10 +11,11 @@ if [ "${GIT_ERROR}" == "0" ]; then
     # Get branch name
     GIT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
     # Get repository path
-    GIT_REPO_PATH=$(git rev-parse --show-toplevel)
+    GIT_REPO_ABSOLUTE_PATH=$(git rev-parse --show-toplevel)
+    GIT_REPO_PATH=$(echo "$GIT_REPO_ABSOLUTE_PATH" | sed -e "s@.*/@@g")
 
     # Merge git data
-    GIT_STATUS=" ${GIT_BRANCH} ...${GIT_REPO_PATH:20} "
+    GIT_STATUS=" ${GIT_BRANCH} ${GIT_REPO_PATH} "
 else 
     GIT_STATUS=""
 fi
