@@ -24,54 +24,53 @@ return {
 
       -- Create map function.
       local nmap = function(keys, func, desc)
-        if desc then
-          desc = "LSP: " .. desc
-        end
+        -- if desc then
+        --   desc = "LSP: " .. desc
+        -- end
         local opts = { noremap = true, silent = true, buffer = bufnr, desc = desc }
         vim.keymap.set("n", keys, func, opts)
       end
 
       -- set keybinds
 
-      -- show definition, references
-      nmap("gR", "<cmd>Telescope lsp_references<CR>", "Show LSP references")
+
+      nmap("<leader>gR", "<cmd>Telescope lsp_references<CR>", "Show LSP references")
 
       -- go to declaration
-      nmap("gD", vim.lsp.buf.declaration, "Go to declaration")
+      nmap("<leader>gD", vim.lsp.buf.declaration, "Go to declaration")
 
       -- show lsp definitions
-      nmap("gd", "<cmd>Telescope lsp_definitions<CR>", "Show LSP definitions")
+      nmap("<leader>gd", "<cmd>Telescope lsp_definitions<CR>", "Show LSP definitions")
 
       -- show lsp implementations
-      nmap("gi", "<cmd>Telescope lsp_implementations<CR>", "Show LSP implementations")
+      nmap("<leader>gi", "<cmd>Telescope lsp_implementations<CR>", "Show LSP implementations")
 
       -- show lsp type definitions
-      nmap("gt", "<cmd>Telescope lsp_type_definitions<CR>", "Show LSP type definitions")
+      nmap("<leader>gt", "<cmd>Telescope lsp_type_definitions<CR>", "Show LSP type definitions")
 
       -- see available code actions, in visual mode will apply to selection
-      nmap("<leader>ca", vim.lsp.buf.code_action, "See available code actions")
+      nmap("<leader>gca", vim.lsp.buf.code_action, "See available code actions")
 
       -- smart rename
-      nmap("<leader>rn", vim.lsp.buf.rename, "Smart rename")
-
-      -- show  diagnostics for file
-      nmap("<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", 
-      "Show buffer diagnostics")
-
-      -- show diagnostics for line
-      nmap("<leader>d", vim.diagnostic.open_float, "Show line diagnostics")
-
-      -- jump to previous diagnostic in buffer
-      nmap("[d", vim.diagnostic.goto_prev, "Go to previous diagnostic")
-
-      -- jump to next diagnostic in buffer
-      nmap("]d", vim.diagnostic.goto_next, "Go to next diagnostic")
+      nmap("<leader>gr", vim.lsp.buf.rename, "Smart rename")
 
       -- show documentation for what is under cursor
-      nmap("K", vim.lsp.buf.hover, "Show documentation for what is under cursor")
+      nmap("<leader>gk", vim.lsp.buf.hover, "Show documentation for what is under cursor")
 
       -- mapping to restart lsp if necessary
       nmap("<leader>rs", ":LspRestart<CR>", "Restart LSP")
+
+      -- diagnostics block
+      nmap("<leader>dd", "<cmd>lua vim.diagnostic.open_float()<CR>", 
+          "Open float diagnostic window")
+      nmap("<leader>dp", "<cmd>lua vim.diagnostic.goto_prev()<CR>", 
+          "Goto previous diagnostic message")
+      nmap("<leader>dn", "<cmd>lua vim.diagnostic.goto_next()<CR>", 
+          "Goto previous diagnostic message")
+      nmap("<leader>dl", "<cmd>lua vim.diagnostic.setloclist()<CR>", 
+          "Open diagnostic local list")
+      nmap("<leader>dt", "<cmd>Telescope diagnostics<CR>", 
+           "Open telescope diagnostic")
     end
 
     -- used to enable autocompletion (assign to every lsp server config)

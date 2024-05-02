@@ -9,6 +9,8 @@ return {
     wk.register({
       ["<leader>f"] = { name = "Telescope" },
       ["<leader>c"] = { name = "NERDCommenter" },
+      ["<leader>d"] = { name = "Diagnostics" },
+      ["<leader>g"] = { name = "LSP" },
     })
   end,
   opts = {
