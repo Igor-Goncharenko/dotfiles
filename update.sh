@@ -10,6 +10,7 @@ mkdir .config
 
 cp -r ~/.config/nvim/ .config/
 cp -r ~/.config/tmux/ .config/
+cp -r ~/.config/alacritty/ .config/
 
 read -p "Do you want push it to github? (y/n) " yn
 
