@@ -30,6 +30,9 @@ vim.opt.encoding = "utf-8"
 
 vim.opt.termguicolors = true    -- enable true color support
 
+vim.opt.textwidth = 80
+vim.opt.colorcolumn = "80"
+
 -- Set copy and paste from/to vim, e.g vim --> browser, browser --> vim
 vim.opt.clipboard = "unnamedplus"
 

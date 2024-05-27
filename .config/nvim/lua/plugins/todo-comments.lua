@@ -19,6 +19,16 @@ return {
       todo_comments.jump_prev() 
     end, "Previous todo comment")
 
-    todo_comments.setup()
+    -- https://github.com/folke/todo-comments.nvim?tab=readme-ov-file#%EF%B8%8F-configuration
+    todo_comments.setup({
+      keywords = {
+        TODO = { icon = "", color = "#b16286" },
+        HACK = { icon = "", color = "#cc241d" },
+        WARN = { icon = "", color = "#cc241d", alt = { "WARNING", "XXX" } },
+        PERF = { icon = "", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
+        NOTE = { icon = "", color = "#83a598", alt = { "INFO" } },
+        TEST = { icon = "", color = "#d79921", alt = { "TESTING", "PASSED", "FAILED" } },
+      },
+  })
   end,
 }

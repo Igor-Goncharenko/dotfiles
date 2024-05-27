@@ -3,31 +3,31 @@
 ----------------------------------------
 
 -- python formatting
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
-  pattern = "*.py",
-  callback = function()
-    vim.opt.textwidth = 88
-    vim.opt.colorcolumn = "88"
-  end
-})
+-- vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+--   pattern = "*.py",
+--   callback = function()
+--     vim.opt.textwidth = 80
+--     vim.opt.colorcolumn = "80"
+--   end
+-- })
 
 -- c/c++ formatting
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
-  pattern = { "*.c", "*.cpp" },
-  callback = function()
-    vim.opt.textwidth = 100
-    vim.opt.colorcolumn = "100"
-  end
-})
+-- vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+--   pattern = { "*.c", "*.cpp" },
+--   callback = function()
+--     vim.opt.textwidth = 80
+--     vim.opt.colorcolumn = "80"
+--   end
+-- })
 
 -- rust formatting
-vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
-  pattern = { "*.rs" },
-  callback = function()
-    vim.opt.textwidth = 100
-    vim.opt.colorcolumn = "100"
-  end
-})
+-- vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
+--   pattern = { "*.rs" },
+--   callback = function()
+--     vim.opt.textwidth = 80
+--     vim.opt.colorcolumn = "80"
+--   end
+-- })
 
 -- javascript formatting
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
@@ -36,7 +36,5 @@ vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
     vim.opt.tabstop = 2
     vim.opt.softtabstop = 2
     vim.opt.shiftwidth = 2
-    vim.opt.textwidth = 100
-    vim.opt.colorcolumn = "100"
   end
 })
