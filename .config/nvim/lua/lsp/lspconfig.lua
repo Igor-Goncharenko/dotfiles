@@ -3,10 +3,10 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
-    { 
-      "antosha417/nvim-lsp-file-operations", 
+    {
+      "antosha417/nvim-lsp-file-operations",
       dependencies = { "nvim-lua/plenary.nvim" },
-      config = true 
+      config = true
     },
   },
   config = function()
@@ -16,9 +16,7 @@ return {
     -- import cmp-nvim-lsp plugin
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-    local keymap = vim.keymap -- for conciseness
-
-    local on_attach = function(client, bufnr)
+    local on_attach = function(_, bufnr)
       -- Buffer local mappings.
       -- See `:help vim.lsp.*` for documentation on any of the below functions
 
@@ -61,15 +59,15 @@ return {
       nmap("<leader>rs", ":LspRestart<CR>", "Restart LSP")
 
       -- diagnostics block
-      nmap("<leader>dd", "<cmd>lua vim.diagnostic.open_float()<CR>", 
+      nmap("<leader>dd", "<cmd>lua vim.diagnostic.open_float()<CR>",
           "Open float diagnostic window")
-      nmap("<leader>dp", "<cmd>lua vim.diagnostic.goto_prev()<CR>", 
+      nmap("<leader>dp", "<cmd>lua vim.diagnostic.goto_prev()<CR>",
           "Goto previous diagnostic message")
-      nmap("<leader>dn", "<cmd>lua vim.diagnostic.goto_next()<CR>", 
+      nmap("<leader>dn", "<cmd>lua vim.diagnostic.goto_next()<CR>",
           "Goto previous diagnostic message")
-      nmap("<leader>dl", "<cmd>lua vim.diagnostic.setloclist()<CR>", 
+      nmap("<leader>dl", "<cmd>lua vim.diagnostic.setloclist()<CR>",
           "Open diagnostic local list")
-      nmap("<leader>dt", "<cmd>Telescope diagnostics<CR>", 
+      nmap("<leader>dt", "<cmd>Telescope diagnostics<CR>",
            "Open telescope diagnostic")
     end
 
@@ -121,6 +119,13 @@ return {
           },
         }
       }
+    })
+
+    -- lua config
+    lspconfig.lua_ls.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = { "lua" },
     })
   end,
 }

@@ -5,12 +5,13 @@
 if [ -d ".config" ]; then
     rm -r .config
 fi
-
 mkdir .config
+rm .zshrc
 
 cp -r ~/.config/nvim/ .config/
 cp -r ~/.config/tmux/ .config/
 cp -r ~/.config/alacritty/ .config/
+cp ~/.zshrc .
 
 read -p "Do you want push it to github? (y/n) " yn
 
